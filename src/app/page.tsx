@@ -1,763 +1,156 @@
+import Link from "next/link";
+
 const features = [
-  {
-    icon: "🎯",
-    title: "Complete Tasks",
-    description:
-      "Complete verified tasks and offers and receive rewards when the required conditions are successfully completed.",
-  },
-  {
-    icon: "📋",
-    title: "Take Surveys",
-    description:
-      "Answer available surveys from legitimate survey providers and earn rewards for eligible completed surveys.",
-  },
-  {
-    icon: "📺",
-    title: "Watch Ads",
-    description:
-      "Watch eligible rewarded advertisements and receive rewards when the ad provider confirms completion.",
-  },
-  {
-    icon: "👥",
-    title: "Invite Friends",
-    description:
-      "Invite friends using your referral code and receive referral rewards when the required conditions are met.",
-  },
+  { number: "01", title: "Tasks, with clear progress", description: "View a task’s requirements, submit completion proof and follow its review status in the app.", detail: "Task submission preview" },
+  { number: "02", title: "Your referral history", description: "Share your referral code and keep track of referrals. Reward eligibility will depend on the published campaign rules.", detail: "Referral sharing and tracking" },
+  { number: "03", title: "A wallet you can follow", description: "See approved rewards and withdrawal requests together. Live rewards and payouts are not available during this preview.", detail: "Balance and activity history" },
+  { number: "04", title: "Your member details", description: "Find your CashEarn member card, account status and logout option together in Settings.", detail: "Member card and account settings" },
 ];
 
-const taskTypes = [
-  {
-    icon: "📱",
-    title: "App Install",
-    reward: "Up to 1,500 coins",
-    time: "2–5 min",
-  },
-  {
-    icon: "🎮",
-    title: "Game Offers",
-    reward: "Up to 3,000 coins",
-    time: "10–30 min",
-  },
-  {
-    icon: "🌐",
-    title: "Website Tasks",
-    reward: "Up to 300 coins",
-    time: "1–3 min",
-  },
-  {
-    icon: "📝",
-    title: "Surveys",
-    reward: "Up to 2,500 coins",
-    time: "2–20 min",
-  },
+const questions = [
+  { question: "Can I download CashEarn now?", answer: "The Android app is being tested privately. There is no public APK or Play Store release linked here yet." },
+  { question: "Can I earn or withdraw money during the preview?", answer: "No live earning opportunities or payouts are available through this preview. The wallet shown on this page is an illustration, not a customer account." },
+  { question: "Is there a registration fee?", answer: "The current app test flow includes a ₹5 test checkout. Public registration is not open. Final pricing and refund terms have not been published." },
+  { question: "Are surveys and rewarded ads available?", answer: "They are not connected to live providers yet. Available campaigns and their requirements will need to be confirmed before they are offered to customers." },
+  { question: "Where can I find policies and support?", answer: "The privacy and terms pages below explain their current pre-release status. Final customer policies and a verified support contact are still required before public launch." },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#faf9ff] text-slate-900">
-      {/* ================= NAVBAR ================= */}
-      <header className="sticky top-0 z-50 border-b border-white/20 bg-white/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-500 text-xl font-black text-white shadow-lg shadow-violet-200">
-              C
-            </div>
-
-            <div>
-              <div className="text-xl font-black tracking-tight">
-                Cash<span className="text-violet-600">Earn</span>
-              </div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Earn • Complete • Reward
-              </div>
-            </div>
-          </a>
-
-          <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-            <a
-              href="#how-it-works"
-              className="transition hover:text-violet-600"
-            >
-              How It Works
-            </a>
-
-            <a
-              href="#tasks"
-              className="transition hover:text-violet-600"
-            >
-              Tasks
-            </a>
-
-            <a
-              href="#surveys"
-              className="transition hover:text-violet-600"
-            >
-              Surveys
-            </a>
-
-            <a
-              href="#support"
-              className="transition hover:text-violet-600"
-            >
-              Support
-            </a>
+    <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <header className="sticky top-0 z-50 border-b border-violet-100 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 lg:px-8">
+          <Link href="/" aria-label="CashEarn home" className="flex items-center gap-3">
+            <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-600 text-xl font-black text-white shadow-lg shadow-violet-100">C</span>
+            <span className="text-xl font-black tracking-tight">Cash<span className="text-violet-700">Earn</span></span>
+          </Link>
+          <a href="#availability" className="rounded-full bg-violet-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-violet-800 md:order-3">App status</a>
+          <nav aria-label="Main navigation" className="flex w-full items-center justify-between gap-4 text-sm font-semibold text-slate-600 md:w-auto md:gap-8">
+            <a href="#features" className="hover:text-violet-700">App features</a>
+            <a href="#how-it-works" className="hover:text-violet-700">How it works</a>
+            <a href="#questions" className="hover:text-violet-700">Questions</a>
           </nav>
-
-          <a
-            href="#download"
-            className="rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-violet-700"
-          >
-            Get CashEarn
-          </a>
         </div>
       </header>
 
-      {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden">
-        <div className="absolute -left-40 top-10 h-96 w-96 rounded-full bg-violet-300/30 blur-3xl" />
-        <div className="absolute -right-40 top-20 h-96 w-96 rounded-full bg-fuchsia-300/30 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-20 lg:grid-cols-2 lg:px-8 lg:pb-32 lg:pt-28">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-sm font-bold text-violet-700 shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              A smarter way to earn rewards
-            </div>
-
-            <h1 className="max-w-3xl text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              Complete tasks.
-              <br />
-              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
-                Earn rewards.
-              </span>
-            </h1>
-
-            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">
-              CashEarn brings verified tasks, surveys, rewarded ads and
-              referral opportunities together in one simple platform.
-            </p>
-
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#download"
-                className="rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 px-7 py-4 text-center font-bold text-white shadow-xl shadow-violet-200 transition hover:-translate-y-1"
-              >
-                Download CashEarn
-              </a>
-
-              <a
-                href="#how-it-works"
-                className="rounded-2xl border border-slate-200 bg-white px-7 py-4 text-center font-bold text-slate-800 shadow-sm transition hover:border-violet-300 hover:text-violet-600"
-              >
-                See How It Works
-              </a>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-500">
-              <div className="flex items-center gap-2">
-                <span className="text-emerald-500">✓</span>
-                Free to join
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-emerald-500">✓</span>
-                Multiple earning options
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-emerald-500">✓</span>
-                Reward tracking
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Card */}
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-violet-500 to-fuchsia-500 opacity-20 blur-3xl" />
-
-            <div className="relative overflow-hidden rounded-[36px] border border-white/70 bg-white p-6 shadow-2xl">
-              <div className="rounded-[28px] bg-gradient-to-br from-violet-700 via-violet-600 to-fuchsia-500 p-6 text-white">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-white/70">
-                    CashEarn Wallet
-                  </span>
-
-                  <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                    LIVE
-                  </span>
-                </div>
-
-                <div className="mt-8">
-                  <p className="text-sm text-white/70">Available Balance</p>
-
-                  <p className="mt-1 text-5xl font-black">₹0.00</p>
-
-                  <p className="mt-2 text-xs text-white/60">
-                    Start completing eligible activities to earn rewards.
-                  </p>
-                </div>
-
-                <div className="mt-8 grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl bg-white/10 p-4">
-                    <div className="text-2xl">🎯</div>
-                    <div className="mt-2 text-sm font-bold">
-                      Tasks
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl bg-white/10 p-4">
-                    <div className="text-2xl">📋</div>
-                    <div className="mt-2 text-sm font-bold">
-                      Surveys
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-5 grid grid-cols-3 gap-3">
-                <div className="rounded-2xl bg-violet-50 p-4 text-center">
-                  <div className="text-xl">🎯</div>
-                  <p className="mt-1 text-xs font-bold text-violet-700">
-                    Tasks
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-fuchsia-50 p-4 text-center">
-                  <div className="text-xl">📺</div>
-                  <p className="mt-1 text-xs font-bold text-fuchsia-700">
-                    Ads
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-emerald-50 p-4 text-center">
-                  <div className="text-xl">👥</div>
-                  <p className="mt-1 text-xs font-bold text-emerald-700">
-                    Referral
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= HOW IT WORKS ================= */}
-      <section
-        id="how-it-works"
-        className="border-y border-slate-100 bg-white py-24"
-      >
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="font-bold uppercase tracking-[0.2em] text-violet-600">
-              How it works
-            </p>
-
-            <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-              Simple steps to get started
-            </h2>
-
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              Choose an eligible activity, complete its requirements and wait
-              for the provider to confirm completion.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                number: "01",
-                icon: "📱",
-                title: "Create your account",
-                text: "Register with CashEarn and complete the required verification steps.",
-              },
-              {
-                number: "02",
-                icon: "🎯",
-                title: "Choose an activity",
-                text: "Select available tasks, surveys, ads or other eligible earning opportunities.",
-              },
-              {
-                number: "03",
-                icon: "💰",
-                title: "Receive rewards",
-                text: "After successful verification, eligible rewards are added to your account.",
-              },
-            ].map((item) => (
-              <div
-                key={item.number}
-                className="rounded-3xl border border-slate-100 bg-[#faf9ff] p-7 shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-black text-violet-600">
-                    {item.number}
-                  </span>
-
-                  <span className="text-3xl">{item.icon}</span>
-                </div>
-
-                <h3 className="mt-8 text-xl font-black">
-                  {item.title}
-                </h3>
-
-                <p className="mt-3 leading-7 text-slate-600">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= FEATURES ================= */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="font-bold uppercase tracking-[0.2em] text-violet-600">
-              Earning options
-            </p>
-
-            <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-              More ways to earn
-            </h2>
-
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              Available opportunities can vary by country, eligibility,
-              provider and account status.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="group rounded-3xl border border-slate-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-violet-100"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-3xl transition group-hover:bg-violet-100">
-                  {feature.icon}
-                </div>
-
-                <h3 className="mt-6 text-xl font-black">
-                  {feature.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= TASKS ================= */}
-      <section
-        id="tasks"
-        className="bg-slate-950 py-24 text-white"
-      >
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+      <main id="main-content">
+        <section className="relative overflow-hidden">
+          <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-12 h-96 w-96 rounded-full bg-violet-200/50 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-24 h-96 w-96 rounded-full bg-fuchsia-100 blur-3xl" />
+          <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 py-16 sm:py-24 lg:grid-cols-2 lg:px-8 lg:py-28">
             <div>
-              <p className="font-bold uppercase tracking-[0.2em] text-violet-400">
-                Tasks
+              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-sm font-semibold text-violet-800">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-violet-600" />Android preview · In testing
               </p>
-
-              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-                Complete eligible offers
-              </h2>
-
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-400">
-                Task availability and rewards are supplied by participating
-                providers. Requirements must be completed exactly as stated.
-              </p>
+              <h1 className="max-w-3xl text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">Your tasks.<br />Your progress.<br /><span className="text-violet-700">One place.</span></h1>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">A first look at CashEarn: an Android app for task submissions, referrals, reward tracking and your member profile.</p>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600">Public registration, live earning opportunities and payouts are not open yet.</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="#features" className="rounded-2xl bg-violet-700 px-7 py-4 text-center font-bold text-white shadow-xl shadow-violet-200/70 transition hover:bg-violet-800">Explore the preview</a>
+                <a href="#availability" className="rounded-2xl border border-violet-200 bg-white px-7 py-4 text-center font-bold text-violet-800 transition hover:bg-violet-50">Check release status</a>
+              </div>
             </div>
-
-            <a
-              href="#download"
-              className="rounded-2xl bg-white px-6 py-4 text-center font-bold text-slate-950 transition hover:bg-violet-100"
-            >
-              Open CashEarn
-            </a>
-          </div>
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {taskTypes.map((task) => (
-              <div
-                key={task.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
-              >
-                <div className="text-4xl">{task.icon}</div>
-
-                <h3 className="mt-5 text-lg font-black">
-                  {task.title}
-                </h3>
-
-                <div className="mt-6 flex items-center justify-between text-sm">
-                  <span className="text-slate-400">Reward</span>
-                  <span className="font-bold text-violet-300">
-                    {task.reward}
-                  </span>
+            <figure className="relative mx-auto w-full max-w-md" aria-label="Illustration of the CashEarn wallet preview with a zero example balance">
+              <div className="rounded-[36px] border border-violet-100 bg-white p-5 shadow-2xl shadow-violet-200/60 sm:p-6">
+                <div className="mb-5 flex items-center justify-between px-1"><p className="font-bold">CashEarn</p><span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-bold text-violet-800">APP PREVIEW</span></div>
+                <div className="rounded-[28px] bg-gradient-to-br from-violet-700 to-violet-500 p-6 text-white">
+                  <p className="text-sm font-medium text-violet-100">Example wallet balance</p>
+                  <p className="mt-3 text-5xl font-black tracking-tight">₹0.00</p>
+                  <p className="mt-3 text-sm leading-6 text-violet-100">Your approved rewards, in one view.</p>
+                  <div className="mt-8 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-white/20 bg-white/10 p-4"><p className="text-xs text-violet-100">Approved rewards</p><p className="mt-2 text-lg font-bold">₹0.00</p></div>
+                    <div className="rounded-2xl border border-white/20 bg-white/10 p-4"><p className="text-xs text-violet-100">Withdrawals</p><p className="mt-2 text-lg font-bold">0 requests</p></div>
+                  </div>
                 </div>
-
-                <div className="mt-3 flex items-center justify-between text-sm">
-                  <span className="text-slate-400">Estimated time</span>
-                  <span className="font-bold">
-                    {task.time}
-                  </span>
+                <div className="mt-5 rounded-2xl bg-violet-50 p-5"><div className="flex items-center gap-3">
+                  <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white font-bold text-violet-700">C</span>
+                  <div><p className="text-sm font-bold">Your member card</p><p className="mt-1 text-xs text-slate-600">Account details, right in Settings</p></div>
+                </div></div>
+                <div aria-hidden="true" className="mt-6 grid grid-cols-5 gap-1 text-center text-[10px] font-semibold text-slate-600 sm:text-xs">
+                  {["Home", "Tasks", "Referrals", "Wallet", "Settings"].map((label) => <span key={label} className={label === "Wallet" ? "rounded-xl bg-violet-100 py-3 text-violet-800" : "py-3"}>{label}</span>)}
                 </div>
               </div>
-            ))}
+              <figcaption className="mt-4 text-center text-xs leading-6 text-slate-600">Illustrative preview. No real account or earnings are shown.</figcaption>
+            </figure>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ================= SURVEYS ================= */}
-      <section id="surveys" className="bg-white py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8">
-          <div>
-            <p className="font-bold uppercase tracking-[0.2em] text-violet-600">
-              Surveys
-            </p>
+        <section id="features" className="border-y border-violet-100 bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <p className="section-kicker">Inside the app</p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-black tracking-tight sm:text-4xl">A clear view of every step.</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">The current build brings the essentials together in five simple pages.</p>
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature) => <article key={feature.number} className="flex flex-col rounded-3xl border border-violet-100 bg-[#faf9ff] p-6">
+                <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-100 text-sm font-bold text-violet-800">{feature.number}</span>
+                <h3 className="mt-7 text-xl font-bold leading-7">{feature.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">{feature.description}</p>
+                <p className="mt-6 border-t border-violet-100 pt-4 text-xs font-semibold text-violet-800">{feature.detail}</p>
+              </article>)}
+            </div>
+          </div>
+        </section>
 
-            <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-              Share your opinion
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              Survey providers may offer opportunities based on your profile
-              and eligibility. Complete a survey honestly and follow the
-              provider&apos;s requirements.
-            </p>
-
-            <div className="mt-8 space-y-4">
+        <section id="how-it-works" className="py-16 sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div><p className="section-kicker">The member journey</p><h2 className="mt-3 max-w-md text-3xl font-black tracking-tight sm:text-4xl">From your account to your activity.</h2><p className="mt-5 max-w-md leading-8 text-slate-600">This is the flow being tested. Provider connections, campaign availability and customer policies still need to be completed before launch.</p></div>
+            <ol className="space-y-4">
               {[
-                "Profile and lifestyle surveys",
-                "Shopping and product feedback",
-                "Technology and entertainment surveys",
-                "Food and consumer research",
-              ].map((text) => (
-                <div
-                  key={text}
-                  className="flex items-center gap-3"
-                >
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm font-black text-emerald-600">
-                    ✓
-                  </div>
-
-                  <span className="font-semibold text-slate-700">
-                    {text}
-                  </span>
-                </div>
-              ))}
-            </div>
+                ["Verify your account", "The app guides members through phone and email verification and the registration checks."],
+                ["Review an available task", "Read the requirements and reward conditions before deciding to participate in a published campaign."],
+                ["Follow your progress", "Submit proof and see review outcomes and approved reward activity in the app."],
+              ].map(([title, description], index) => <li key={title} className="flex gap-5 rounded-3xl border border-violet-100 bg-white p-6">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-700 font-bold text-white">{index + 1}</span>
+                <div><h3 className="font-bold">{title}</h3><p className="mt-2 text-sm leading-7 text-slate-600">{description}</p></div>
+              </li>)}
+            </ol>
           </div>
+        </section>
 
-          <div className="rounded-[36px] bg-gradient-to-br from-violet-600 to-fuchsia-500 p-1 shadow-2xl shadow-violet-200">
-            <div className="rounded-[32px] bg-white p-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-semibold text-slate-400">
-                    Survey Centre
-                  </p>
-                  <h3 className="mt-1 text-2xl font-black">
-                    Available surveys
-                  </h3>
-                </div>
-
-                <div className="rounded-2xl bg-violet-100 p-3 text-2xl">
-                  📋
-                </div>
-              </div>
-
-              <div className="mt-8 space-y-4">
-                {[
-                  ["Quick Survey", "2–3 min", "500 coins"],
-                  ["Normal Survey", "5–10 min", "1,000 coins"],
-                  ["Long Survey", "10–20 min", "2,500 coins"],
-                ].map(([title, time, reward]) => (
-                  <div
-                    key={title}
-                    className="rounded-2xl border border-slate-100 bg-slate-50 p-5"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-black">{title}</p>
-                        <p className="mt-1 text-sm text-slate-500">
-                          {time}
-                        </p>
-                      </div>
-
-                      <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-700">
-                        {reward}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-5 text-xs leading-5 text-slate-400">
-                Example rewards only. Actual survey availability and rewards
-                are determined by the survey provider.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= REFERRAL ================= */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="overflow-hidden rounded-[40px] bg-gradient-to-r from-violet-700 via-purple-600 to-fuchsia-500 p-8 text-white shadow-2xl shadow-violet-200 sm:p-12 lg:p-16">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <p className="font-bold uppercase tracking-[0.2em] text-white/70">
-                  Referral program
-                </p>
-
-                <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-                  Invite friends and grow together.
-                </h2>
-
-                <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
-                  Referral rewards can be credited only when the referral
-                  satisfies the conditions defined by CashEarn, including any
-                  required verification and qualifying activities.
-                </p>
-
-                <a
-                  href="#download"
-                  className="mt-8 inline-flex rounded-2xl bg-white px-6 py-4 font-bold text-violet-700 transition hover:bg-violet-50"
-                >
-                  Start Referring
-                </a>
-              </div>
-
-              <div className="rounded-3xl bg-white/10 p-7 backdrop-blur">
-                <div className="text-sm font-semibold text-white/70">
-                  Your referral journey
-                </div>
-
-                <div className="mt-6 space-y-5">
-                  {[
-                    "Share your referral code",
-                    "Friend creates a CashEarn account",
-                    "Friend completes required verification",
-                    "Friend completes qualifying tasks",
-                    "Eligible referral reward is credited",
-                  ].map((step, index) => (
-                    <div
-                      key={step}
-                      className="flex items-center gap-4"
-                    >
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white font-black text-violet-700">
-                        {index + 1}
-                      </div>
-
-                      <span className="font-semibold text-white/90">
-                        {step}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= DOWNLOAD ================= */}
-      <section
-        id="download"
-        className="bg-slate-950 py-24 text-white"
-      >
-        <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-4xl shadow-2xl shadow-violet-500/30">
-            C
-          </div>
-
-          <h2 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">
-            Ready to try CashEarn?
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-400">
-            Download the Android app and access the available CashEarn
-            earning features from your phone.
-          </p>
-
-          <a
-            href="/cashEarn.apk"
-            className="mt-9 inline-flex rounded-2xl bg-white px-8 py-4 font-black text-slate-950 shadow-xl transition hover:-translate-y-1 hover:bg-violet-100"
-          >
-            Download Android APK
-          </a>
-
-          <p className="mt-5 text-xs text-slate-500">
-            The APK download link will be connected after you upload your
-            production APK.
-          </p>
-        </div>
-      </section>
-
-      {/* ================= SUPPORT ================= */}
-      <section id="support" className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="rounded-3xl border border-slate-100 bg-[#faf9ff] p-7 md:col-span-2">
-              <p className="font-bold uppercase tracking-[0.2em] text-violet-600">
-                Customer support
-              </p>
-
-              <h2 className="mt-3 text-3xl font-black">
-                Need help?
-              </h2>
-
-              <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-                Our support section will help customers with account,
-                verification, tasks, rewards and withdrawal-related questions.
-              </p>
-
-              <a
-                href="mailto:support@cashearn.app"
-                className="mt-7 inline-flex rounded-2xl bg-slate-950 px-6 py-4 font-bold text-white transition hover:bg-violet-700"
-              >
-                Contact Support
-              </a>
-            </div>
-
-            <div className="rounded-3xl bg-violet-600 p-7 text-white">
-              <div className="text-4xl">🛡️</div>
-
-              <h3 className="mt-5 text-xl font-black">
-                Safe & transparent
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-white/80">
-                We will clearly display task requirements, eligibility,
-                reward conditions and important policies.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= FAQ ================= */}
-      <section className="bg-[#faf9ff] py-24">
-        <div className="mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="text-center">
-            <p className="font-bold uppercase tracking-[0.2em] text-violet-600">
-              FAQ
-            </p>
-
-            <h2 className="mt-3 text-4xl font-black tracking-tight">
-              Frequently asked questions
-            </h2>
-          </div>
-
-          <div className="mt-12 space-y-4">
-            {[
-              [
-                "Is CashEarn free to join?",
-                "The CashEarn account itself can be free to create. Any specific verification or eligibility requirements will be clearly shown before the relevant process.",
-              ],
-              [
-                "How do users earn?",
-                "Users can earn through eligible tasks, surveys, rewarded advertisements and qualifying referral activities.",
-              ],
-              [
-                "Are rewards guaranteed?",
-                "No. Rewards depend on successful completion and verification by the relevant provider or CashEarn system.",
-              ],
-              [
-                "Where does the reward money come from?",
-                "Task and survey providers, advertising partners and other legitimate revenue sources can fund eligible rewards. CashEarn can retain a portion of platform revenue to operate the service.",
-              ],
-            ].map(([question, answer]) => (
-              <details
-                key={question}
-                className="group rounded-2xl border border-slate-200 bg-white p-6"
-              >
-                <summary className="cursor-pointer list-none font-black">
-                  <div className="flex items-center justify-between gap-5">
-                    <span>{question}</span>
-                    <span className="text-xl text-violet-600 transition group-open:rotate-45">
-                      +
-                    </span>
-                  </div>
-                </summary>
-
-                <p className="mt-4 leading-7 text-slate-600">
-                  {answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= FOOTER ================= */}
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
-          <div className="flex flex-col justify-between gap-8 md:flex-row">
+        <section id="availability" className="bg-[#211440] py-16 text-white sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:items-center lg:px-8">
             <div>
-              <div className="text-2xl font-black">
-                Cash<span className="text-violet-600">Earn</span>
-              </div>
-
-              <p className="mt-3 max-w-sm text-sm leading-6 text-slate-500">
-                Complete eligible activities and earn rewards through the
-                CashEarn platform.
-              </p>
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-200">Release status</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Taking time to get the details right.</h2>
+              <p className="mt-6 max-w-xl leading-8 text-violet-100">CashEarn is in private Android testing. A public release date has not been announced.</p>
+              <p className="mt-7 inline-flex rounded-2xl border border-violet-300/40 bg-white/5 px-5 py-4 text-sm font-bold">Public download not yet available</p>
             </div>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm font-semibold text-slate-600">
-              <a
-                href="#how-it-works"
-                className="hover:text-violet-600"
-              >
-                How It Works
-              </a>
-
-              <a
-                href="#tasks"
-                className="hover:text-violet-600"
-              >
-                Tasks
-              </a>
-
-              <a
-                href="#surveys"
-                className="hover:text-violet-600"
-              >
-                Surveys
-              </a>
-
-              <a
-                href="#support"
-                className="hover:text-violet-600"
-              >
-                Support
-              </a>
-
-              <a
-                href="/privacy"
-                className="hover:text-violet-600"
-              >
-                Privacy
-              </a>
-
-              <a
-                href="/terms"
-                className="hover:text-violet-600"
-              >
-                Terms
-              </a>
+            <div id="release-status" className="rounded-3xl border border-white/15 bg-white/5 p-7 sm:p-8">
+              <h3 className="text-xl font-bold">Before public launch</h3>
+              <ul className="mt-5 space-y-4 text-sm leading-7 text-violet-100">
+                <li>Phone and email verification and test checkout need to pass complete service tests.</li>
+                <li>Live task sources, reward rules and the payout process need to be confirmed.</li>
+                <li>Final privacy, terms, pricing, refund details and a verified support contact need to be published.</li>
+              </ul>
+              <p className="mt-6 border-t border-white/15 pt-5 text-sm leading-7 text-violet-100">The current app test flow includes a ₹5 test checkout. This website does not accept registrations or payments.</p>
             </div>
           </div>
+        </section>
 
-          <div className="mt-10 border-t border-slate-100 pt-6 text-xs text-slate-400">
-            © {new Date().getFullYear()} CashEarn. All rights reserved.
+        <section id="questions" className="bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-3xl px-5 lg:px-8">
+            <p className="section-kicker">Good to know</p><h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Your questions, answered.</h2>
+            <div className="mt-10 space-y-4">
+              {questions.map(({ question, answer }) => <details key={question} className="group rounded-2xl border border-violet-100 bg-[#faf9ff] p-5 sm:p-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-bold">{question}<span aria-hidden="true" className="text-2xl font-normal text-violet-700 transition-transform group-open:rotate-45">+</span></summary>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{answer}</p>
+              </details>)}
+            </div>
           </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-violet-100 bg-[#faf9ff]">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-7 px-5 py-10 sm:flex-row lg:px-8">
+          <div><p className="text-xl font-black">Cash<span className="text-violet-700">Earn</span></p><p className="mt-2 text-sm text-slate-600">An Android app in progress.</p></div>
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-start gap-x-6 gap-y-4 text-sm font-semibold text-slate-600">
+            <Link href="/privacy" className="hover:text-violet-700">Privacy status</Link>
+            <Link href="/terms" className="hover:text-violet-700">Terms status</Link>
+            <a href="#availability" className="hover:text-violet-700">App availability</a>
+          </nav>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
