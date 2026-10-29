@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #faf9ff;
+  --foreground: #1e1730;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, monospace;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+section[id], div[id], main[id] { scroll-margin-top: 9rem; }
+:focus-visible { outline: 3px solid #7c3aed; outline-offset: 5px; }
+.section-kicker { color: #6d28d9; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.skip-link { position: fixed; left: 1rem; top: -6rem; z-index: 100; border-radius: 0.75rem; background: white; padding: 1rem; color: #5b21b6; font-weight: 700; }
+.skip-link:focus { top: 1rem; }
+summary::-webkit-details-marker { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; scroll-behavior: auto !important; }
 }
